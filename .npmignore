@@ -1,11 +1,18 @@
-{
-  // ...
-  "files": [
-    "**/*.ts",
-    "**/*.md",
-    "tsconfig.json",
-    "!**/*.test.ts",
-    "!**/__test__"
-  ],
-  // ...
-}
+# Source
+src/
+test/
+example/
+
+# Config files
+tsconfig.json
+tsup.config.ts
+.gitignore
+todo.md
+
+# Development files
+*.test.ts
+__test__/
+*.map
+
+# Package manager
+bun.lockb

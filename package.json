@@ -1,5 +1,5 @@
 {
-  "name": "google_news_api",
+  "name": "@potetotown/google_news_api",
   "version": "1.0.0",
   "description": "Google News RSS feed to JSON converter",
   "main": "./dist/index.js",
