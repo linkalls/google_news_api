@@ -1,0 +1,43 @@
+{
+  "name": "google_news_api",
+  "version": "1.0.0",
+  "description": "Google News RSS feed to JSON converter",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "author": "poteto",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linkalls/google_news_api"
+  },
+  "scripts": {
+    "test": "bun test",
+    "build": "tsup",
+    "start": "bun run src/index.ts",
+    "prepublishOnly": "bun run build"
+  },
+  "files": [
+    "**/*.ts",
+    "index.d.ts",
+    "tsconfig.json",
+    "!**/*.test.ts",
+    "!**/__test__"
+  ],
+  "keywords": [
+    "google-news",
+    "rss",
+    "json",
+    "api"
+  ],
+  "devDependencies": {
+    "@types/bun": "latest",
+    "tsup": "^8.4.0",
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/xml2js": "^0.4.14",
+    "xml2js": "^0.6.2"
+  }
+}
