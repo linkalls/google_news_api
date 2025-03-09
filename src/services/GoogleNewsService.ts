@@ -7,6 +7,8 @@ import { sanitizeParams, validateParams } from "../validators/params";
 const parseXML = promisify(parseString);
 
 export class GoogleNewsService {
+
+  
   private readonly BASE_URL = "https://news.google.com/rss";
 
   private buildUrl(params: GoogleNewsParams): string {

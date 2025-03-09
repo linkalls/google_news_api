@@ -1,6 +1,6 @@
 {
   "name": "@potetotown/google_news_api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Google News RSS feed to JSON converter",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -19,8 +19,8 @@
     "prepublishOnly": "bun run build"
   },
   "files": [
-    "**/*.ts",
-    "index.d.ts",
+    "dist",
+    "src",
     "tsconfig.json",
     "!**/*.test.ts",
     "!**/__test__"
