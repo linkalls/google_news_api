@@ -7,8 +7,16 @@ import { sanitizeParams, validateParams } from "../validators/params";
 const parseXML = promisify(parseString);
 
 export class GoogleNewsService {
+   constructor({
+    country = null,
+    language = null,
+  }: { country?: string | null; language?: string | null } = {}) {
+    this.country = country;
+    this.language = language;
+  }
 
-  
+  private country: string | null = null;
+  private language: string | null = null;
   private readonly BASE_URL = "https://news.google.com/rss";
 
   private buildUrl(params: GoogleNewsParams): string {
@@ -21,12 +29,16 @@ export class GoogleNewsService {
 
     const queryParams: string[] = [];
 
-    if (sanitizedParams.country) {
-      queryParams.push(`gl=${sanitizedParams.country}`);
+    // コンストラクタで設定された値またはパラメータで渡された値を使用
+    const effectiveCountry = sanitizedParams.country || this.country;
+    const effectiveLanguage = sanitizedParams.language || this.language;
+
+    if (effectiveCountry) {
+      queryParams.push(`gl=${effectiveCountry}`);
     }
 
-    if (sanitizedParams.language) {
-      queryParams.push(`hl=${sanitizedParams.language}`);
+    if (effectiveLanguage) {
+      queryParams.push(`hl=${effectiveLanguage}`);
     }
 
     if (queryParams.length > 0) {
@@ -104,5 +116,3 @@ export class GoogleNewsService {
     }
   }
 }
-
-
