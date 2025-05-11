@@ -7,7 +7,7 @@ import { sanitizeParams, validateParams } from "../validators/params";
 const parseXML = promisify(parseString);
 
 export class GoogleNewsService {
-   constructor({
+  constructor({
     country = null,
     language = null,
   }: { country?: string | null; language?: string | null } = {}) {
@@ -18,6 +18,22 @@ export class GoogleNewsService {
   private country: string | null = null;
   private language: string | null = null;
   private readonly BASE_URL = "https://news.google.com/rss";
+
+   private stripHtmlTags(html: string): string {
+    // まずHTMLタグを削除
+    const withoutTags = html.replace(/<[^>]*>/g, '');
+    
+    // 一般的なHTMLエンティティをデコード
+    return withoutTags
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&amp;/g, '&')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&copy;/g, '©')
+      .replace(/&reg;/g, '®')
+  }
 
   private buildUrl(params: GoogleNewsParams): string {
     const sanitizedParams = sanitizeParams(params);
@@ -75,7 +91,7 @@ export class GoogleNewsService {
         title: item.title[0],
         link: item.link[0],
         pubDate: item.pubDate[0],
-        description: item.description[0],
+        description: this.stripHtmlTags(item.description[0]),
         source: item.source?.[0]?._ || "Google News",
       };
     });

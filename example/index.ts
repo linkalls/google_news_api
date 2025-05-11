@@ -13,8 +13,8 @@ console.log(result.items.length);
 result.items.forEach((item) => {
   console.log(item.title);
   console.log(item.link);
-  // console.log(item.pubDate);
-  // console.log(item.description);
-  // console.log(item.source);
+  console.log(item.pubDate);
+  console.log(item.description);
+  console.log(item.source);
   console.log("--------------");
 });
